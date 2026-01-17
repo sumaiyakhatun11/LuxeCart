@@ -25,6 +25,14 @@ export default function Navbar() {
     return () => window.removeEventListener('storage', checkAuth);
   }, []);
 
+  // Re-check auth on route change so UI updates after login without manual refresh
+  useEffect(() => {
+    const userCookie = document.cookie
+      .split('; ')
+      .find((row) => row.startsWith('auth='));
+    setIsLoggedIn(!!userCookie);
+  }, [pathname]);
+
   const handleLogout = () => {
     document.cookie = 'auth=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
     document.cookie = 'user=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;';

@@ -27,7 +27,13 @@ export default function LoginPage() {
       // Store auth in cookie
       document.cookie = `auth=true; path=/; max-age=86400`;
       document.cookie = `user=${email}; path=/; max-age=86400`;
-      
+
+      // Also update localStorage to help any listeners and other tabs
+      try {
+        localStorage.setItem('auth', 'true');
+        localStorage.setItem('user', email);
+      } catch {}
+
       // Redirect to items page
       router.push('/items');
     } else {
@@ -48,7 +54,13 @@ export default function LoginPage() {
     // Store auth in cookie
     document.cookie = `auth=true; path=/; max-age=86400`;
     document.cookie = `user=${DEMO_EMAIL}; path=/; max-age=86400`;
-    
+
+    // Also update localStorage to help any listeners and other tabs
+    try {
+      localStorage.setItem('auth', 'true');
+      localStorage.setItem('user', DEMO_EMAIL);
+    } catch {}
+
     // Redirect to items page
     router.push('/items');
   };
