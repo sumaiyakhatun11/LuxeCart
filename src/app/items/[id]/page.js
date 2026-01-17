@@ -5,6 +5,7 @@ import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 export default function ItemDetailsPage() {
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
   const params = useParams();
   const router = useRouter();
   const [item, setItem] = useState(null);
@@ -23,7 +24,7 @@ export default function ItemDetailsPage() {
 
   const fetchItem = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/items/${id}`);
+      const response = await fetch(`${API_BASE_URL}/api/items/${id}`);
       if (!response.ok) {
         throw new Error('Item not found');
       }

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 export default function Home() {
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
   const [featuredItems, setFeaturedItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [imageErrors, setImageErrors] = useState({});
@@ -14,7 +15,7 @@ export default function Home() {
 
   const fetchFeaturedItems = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/items');
+      const response = await fetch(`${API_BASE_URL}/api/items`);
       const data = await response.json();
       setFeaturedItems(data.slice(0, 3));
     } catch (error) {
