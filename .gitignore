@@ -39,3 +39,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+# Database
+*.db
+*.sqlite
+
+# Documentation (exclude from git)
+IMPLEMENTATION.md
+COMPLETION_SUMMARY.md
+QUICK_START.md
+START_HERE.md
+SUBMISSION.md
